@@ -1,0 +1,32 @@
+# IntelliJ IDEA files
+.idea/
+*.iml
+*.iws
+*.ipr
+/out/
+/target/
+
+# Maven/Gradle build artifacts
+/target/
+/build/
+
+# Compiled class files
+*.class
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+*.tmp
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Other common exclusions
+.classpath
+.project
+.settings/
+/.idea_modules/
+.factorypath
