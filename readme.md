@@ -23,3 +23,9 @@ Domain Logic:
 The business logic for adding/removing items and updating the total amount is still within the Cart class, which is fine and could still be part of a hybrid approach.
 
 ---
+
+## Order Entity
+
+![alt text](markdown-images/image-2.png)
+
+---
