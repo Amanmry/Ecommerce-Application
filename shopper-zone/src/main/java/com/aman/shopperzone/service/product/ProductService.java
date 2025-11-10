@@ -2,6 +2,7 @@ package com.aman.shopperzone.service.product;
 
 import com.aman.shopperzone.dto.ImageDto;
 import com.aman.shopperzone.dto.ProductDto;
+import com.aman.shopperzone.exceptions.AlreadyExistException;
 import com.aman.shopperzone.exceptions.ResourceNotFoundException;
 import com.aman.shopperzone.model.Category;
 import com.aman.shopperzone.model.Image;
@@ -32,6 +33,9 @@ public class ProductService implements IProductService {
         // If Yes, set it as the new product category
         // If No, then save it as a new category
         // Then set as the new product category
+        if(productExists(request.getName(), request.getBrand())) {
+            throw new AlreadyExistException(request.getBrand() + " " + request.getName() + " already exists");
+        }
         Category category = Optional.ofNullable(categoryRepository.findByName(request.getCategory().getName()))
                 .orElseGet(() -> {
                     Category newCategory = new Category(request.getCategory().getName());
@@ -39,6 +43,10 @@ public class ProductService implements IProductService {
                 });
         request.setCategory(category);
         return productRepository.save(createProduct(request, category));
+    }
+
+    private boolean productExists(String name, String brand) {
+        return productRepository.existsByNameAndBrand(name, brand);
     }
 
     private Product createProduct(AddProductRequest request, Category category) {
