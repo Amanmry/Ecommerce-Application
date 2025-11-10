@@ -18,7 +18,7 @@ import java.util.Set;
 public class Cart {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private BigDecimal totalAmount = BigDecimal.ZERO;
 
@@ -49,6 +49,11 @@ public class Cart {
            }
            return unitPrice.multiply(BigDecimal.valueOf(item.getQuantity()));
         }).reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public void clearCart(){
+        this.cartItems.clear();
+        updateTotalAmount();
     }
 
 }
