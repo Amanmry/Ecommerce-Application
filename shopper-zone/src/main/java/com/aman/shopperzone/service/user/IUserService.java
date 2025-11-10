@@ -1,5 +1,6 @@
 package com.aman.shopperzone.service.user;
 
+import com.aman.shopperzone.dto.UserDto;
 import com.aman.shopperzone.model.User;
 import com.aman.shopperzone.request.CreateUserRequest;
 import com.aman.shopperzone.request.UserUpdateRequest;
@@ -14,4 +15,5 @@ public interface IUserService {
 
     void deleteUser(Long userId);
 
+    UserDto convertUserToDto(User user);
 }

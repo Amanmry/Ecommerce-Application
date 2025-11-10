@@ -1,5 +1,6 @@
 package com.aman.shopperzone.service.user;
 
+import com.aman.shopperzone.dto.UserDto;
 import com.aman.shopperzone.exceptions.AlreadyExistException;
 import com.aman.shopperzone.exceptions.ResourceNotFoundException;
 import com.aman.shopperzone.model.User;
@@ -7,6 +8,7 @@ import com.aman.shopperzone.repository.UserRepository;
 import com.aman.shopperzone.request.CreateUserRequest;
 import com.aman.shopperzone.request.UserUpdateRequest;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -15,6 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService implements IUserService {
     private final UserRepository userRepository;
+    private final ModelMapper modelMapper;
 
     @Override
     public User getUserById(Long userId) {
@@ -53,4 +56,10 @@ public class UserService implements IUserService {
                 throw new ResourceNotFoundException("User not found!");
             });
     }
+
+    @Override
+    public UserDto convertUserToDto(User user) {
+        return modelMapper.map(user, UserDto.class);
+    }
+
 }
