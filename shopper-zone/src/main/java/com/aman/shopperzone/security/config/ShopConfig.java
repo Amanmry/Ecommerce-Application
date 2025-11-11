@@ -1,4 +1,4 @@
-package com.aman.shopperzone.config;
+package com.aman.shopperzone.security.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
